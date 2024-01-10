@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo-ci-cd-deployment
+spec:
+  selector:
+    matchLabels:
+      app: echo-ci-cd
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: echo-ci-cd
+    spec:
+      containers:
+      - name: echo-ci-cd
+        image: echo-ci-cd:latest
+        ports:
+        - containerPort: 8080
