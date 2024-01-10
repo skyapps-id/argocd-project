@@ -14,7 +14,7 @@ node {
                     sh "git config user.name 'Aji Indra Jaya'"
                     //sh "git switch ${BRANCH}"
                     sh "cat services/${SVC_NAME}/deployment.yaml"
-                    sh "sed -i 's+echo-ci-cd.*+echo-ci-cd:${DOCKERTAG}+g' services/${SVC_NAME}/deployment.yaml"
+                    sh "sed -i 's+${IMAGE_NAME}.*+${IMAGE_NAME}:${DOCKERTAG}+g' services/${SVC_NAME}/deployment.yaml"
                     sh "cat services/${SVC_NAME}/deployment.yaml"
                     sh "git add ."
                     sh "git commit -m 'Done by Jenkins Job changemanifest: ${env.BUILD_NUMBER}'"
