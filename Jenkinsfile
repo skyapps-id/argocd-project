@@ -18,7 +18,7 @@ node {
                     sh "cat services/${SVC_NAME}/deployment.yaml"
                     sh "git add ."
                     sh "git commit -m 'Done by Jenkins Job changemanifest: ${env.BUILD_NUMBER}'"
-                    script.sh "git push https://${GIT_TOKEN}@github.com/${GIT_USERNAME}/argocd-project.git HEAD:master"
+                    script "git push https://${GIT_TOKEN}@github.com/${GIT_USERNAME}/argocd-project.git HEAD:master"
                 }
             }
         }
