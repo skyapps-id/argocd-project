@@ -11,9 +11,10 @@ node {
                 withCredentials([usernamePassword(credentialsId: 'GITHUB_TOKEN', passwordVariable: 'GIT_TOKEN', usernameVariable: 'GIT_USERNAME')]) {
                     //def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
                     sh "git config user.email aji.indrajaya@efishery.com"
-                    sh "git config user.name 'Aji Indra Jaya'"
+                    sh "git config user.name 'Aji Indra Jaya'`"
                     sh "cd services/${SVC_NAME}"
                     //sh "git switch ${BRANCH}"
+                    sh "pwd"
                     sh "cat deployment.yaml"
                     sh "sed -i 's+echo-ci-cd.*+echo-ci-cd:${DOCKERTAG}+g' deployment.yaml"
                     sh "cat deployment.yaml"
