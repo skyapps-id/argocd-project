@@ -9,7 +9,6 @@ node {
         script {
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 withCredentials([usernamePassword(credentialsId: 'GITHUB_TOKEN', passwordVariable: 'GIT_TOKEN', usernameVariable: 'GIT_USERNAME')]) {
-                    //def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
                     sh "git config user.email aji.indrajaya@efishery.com"
                     sh "git config user.name 'Aji Indra Jaya'"
                     //sh "git switch ${BRANCH}"
