@@ -2,14 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: echo-ci-cd-deployment
-  annotations:
-    configmap.reloader.stakater.com/reload: "deployment.yaml"
-    keel.sh/approvals: "0"
-    keel.sh/policy: force
-    keel.sh/pollSchedule: "@every 5s"
-    keel.sh/trigger: poll
-    keel.sh/match-tag: "true"
-    reloader.stakater.com/auto: "true"
 spec:
   selector:
     matchLabels:
@@ -22,8 +14,6 @@ spec:
     spec:
       containers:
       - name: echo-ci-cd
-        image: efishery.azurecr.io/echo-ci-cd:37
+        image: efishery.azurecr.io/echo-ci-cd:38
         ports:
         - containerPort: 8080
----
-##
