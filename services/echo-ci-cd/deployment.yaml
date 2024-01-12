@@ -25,3 +25,4 @@ spec:
         image: efishery.azurecr.io/echo-ci-cd:37
         ports:
         - containerPort: 8080
+---
