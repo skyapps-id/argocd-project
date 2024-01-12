@@ -2,6 +2,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: echo-ci-cd-deployment
+  annotations:
+    keel.sh/approvals: '0'
+    keel.sh/policy: all
+    keel.sh/pollSchedule: '@every 10s'
+    keel.sh/trigger: poll
+    reloader.stakater.com/auto: "true"
 spec:
   selector:
     matchLabels:
