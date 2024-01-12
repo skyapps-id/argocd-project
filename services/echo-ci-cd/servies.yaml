@@ -4,7 +4,7 @@ metadata:
   name: echo-ci-cd-service
   namespace: default
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: echo-ci-cd
   ports:
