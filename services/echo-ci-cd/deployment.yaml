@@ -3,10 +3,12 @@ kind: Deployment
 metadata:
   name: echo-ci-cd-deployment
   annotations:
-    keel.sh/approvals: '0'
-    keel.sh/policy: all
-    keel.sh/pollSchedule: '@every 10s'
+    configmap.reloader.stakater.com/reload: " echo-ci-cd"
+    keel.sh/approvals: "0"
+    keel.sh/policy: force
+    keel.sh/pollSchedule: "@every 5s"
     keel.sh/trigger: poll
+    keel.sh/match-tag: "true"
     reloader.stakater.com/auto: "true"
 spec:
   selector:
