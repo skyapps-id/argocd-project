@@ -11,6 +11,8 @@ spec:
     metadata:
       labels:
         app: echo-ci-cd
+      annotations:
+        'consul.hashicorp.com/connect-inject': 'true'
     spec:
       containers:
       - name: echo-ci-cd
