@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: echo-ci-cd-service
+  name: echo-ci-cd
   namespace: default
 spec:
   selector:
