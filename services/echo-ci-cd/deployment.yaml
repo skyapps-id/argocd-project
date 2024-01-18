@@ -17,5 +17,31 @@ spec:
       containers:
       - name: echo-ci-cd
         image: efishery.azurecr.io/echo-ci-cd:41
+        env:
+          - name: DB_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: echo-configmap
+                key: db_host
+          - name: DB_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: echo-configmap
+                key: db_port
+          - name: DB_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: echo-configmap
+                key: db_name
+          - name: DB_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: echo-secret
+                key: db_name
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: echo-secret
+                key: db_password
         ports:
         - containerPort: 8080
