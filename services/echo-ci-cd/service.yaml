@@ -1,3 +1,11 @@
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceDefaults
+metadata:
+  name: echo-ci-cd
+  namespace: default
+spec:
+  protocol: http
+---
 apiVersion: v1
 kind: Service
 metadata:
