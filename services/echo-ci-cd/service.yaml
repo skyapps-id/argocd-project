@@ -16,6 +16,6 @@ spec:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: echo-1
+  name: echo-ci-cd
   namespace: default
 automountServiceAccountToken: true
