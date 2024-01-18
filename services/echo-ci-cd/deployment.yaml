@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: echo-ci-cd
-        image: efishery.azurecr.io/echo-ci-cd:45
+        image: efishery.azurecr.io/echo-ci-cd:46
         ports:
         - containerPort: 8080
