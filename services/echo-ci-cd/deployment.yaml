@@ -33,7 +33,7 @@ spec:
               configMapKeyRef:
                 name: echo-configmap
                 key: db_name
-          - name: DB_USERNAME
+          - name: DB_USER
             valueFrom:
               secretKeyRef:
                 name: echo-secret
