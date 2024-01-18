@@ -37,7 +37,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: echo-secret
-                key: db_name
+                key: db_user
           - name: DB_PASSWORD
             valueFrom:
               secretKeyRef:
