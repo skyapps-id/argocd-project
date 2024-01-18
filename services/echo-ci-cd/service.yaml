@@ -12,3 +12,10 @@ spec:
     - port: 8080
       targetPort: 8080
       protocol: TCP
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: echo-1
+  namespace: default
+automountServiceAccountToken: true
