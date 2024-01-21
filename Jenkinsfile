@@ -1,6 +1,4 @@
 node {
-    def app
-
     stage('Clone repository') {
         checkout scm
     }
@@ -19,6 +17,13 @@ node {
                     sh('git push https://$GIT_TOKEN@github.com/$GIT_USERNAME/argocd-project.git HEAD:master')
                 }
             }
+        }
+    }
+
+    post {
+        cleanup{
+            echo "Clean up in post work space"
+            cleanWs()
         }
     }
 }
