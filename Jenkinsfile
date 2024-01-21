@@ -1,13 +1,13 @@
 pipeline {
     agent any
-    
-    stage('Clone repository') {
-        steps {
-            checkout scm
-        }
-    }
 
     stages {
+        stage('Clone repository') {
+            steps {
+                checkout scm
+            }
+        }
+
         stage('Update GIT') {
             steps {
                 script {
