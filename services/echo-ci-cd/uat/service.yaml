@@ -1,0 +1,29 @@
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceDefaults
+metadata:
+  name: echo-ci-cd--uat
+  namespace: uat
+spec:
+  protocol: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: echo-ci-cd--uat
+  name: echo-ci-cd--uat
+  namespace: uat
+spec:
+  selector:
+    app: echo-ci-cd--uat
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: echo-ci-cd--uat
+  namespace: uat
+automountServiceAccountToken: true

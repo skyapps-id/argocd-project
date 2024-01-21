@@ -1,0 +1,29 @@
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceDefaults
+metadata:
+  name: echo-ci-cd--production
+  namespace: production
+spec:
+  protocol: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: echo-ci-cd--production
+  name: echo-ci-cd--production
+  namespace: production
+spec:
+  selector:
+    app: echo-ci-cd--production
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: echo-ci-cd--production
+  namespace: production
+automountServiceAccountToken: true

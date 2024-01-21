@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: echo-ci-cd-deployment
+  name: echo-ci-cd--uat
 spec:
   selector:
     matchLabels:
-      app: echo-ci-cd
-  replicas: 2
+      app: echo-ci-cd--uat
+  replicas: 1
   template:
     metadata:
       labels:
-        app: echo-ci-cd
+        app: echo-ci-cd--uat
       annotations:
         'consul.hashicorp.com/connect-inject': 'true'
     spec:
       containers:
-      - name: echo-ci-cd
-        image: efishery.azurecr.io/echo-ci-cd:23
+      - name: echo-ci-cd--uat
+        image: efishery.azurecr.io/echo-ci-cd--uat:23
         env:
           - name: DB_HOST
             valueFrom:

@@ -1,0 +1,22 @@
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: route-echo-ci-cd--prodcution
+  labels:
+    app: echo-ci-cd--prodcution
+  namespace: prodcution
+spec:
+  parentRefs:
+  - name: api-gateway
+    namespace: consul
+  hostnames:
+  - efishery.southeastasia.cloudapp.azure.com
+  rules:
+  - matches:
+    - path:
+        value: /
+    backendRefs:
+    - kind: Service
+      name: echo-ci-cd--prodcution
+      port: 8080
+      

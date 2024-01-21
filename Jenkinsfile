@@ -11,10 +11,9 @@ node {
                 withCredentials([usernamePassword(credentialsId: 'GITHUB_TOKEN', passwordVariable: 'GIT_TOKEN', usernameVariable: 'GIT_USERNAME')]) {
                     sh "git config user.email aji.indrajaya@efishery.com"
                     sh "git config user.name 'Aji Indra Jaya'"
-                    //sh "git switch ${BRANCH}"
-                    sh "cat services/${SVC_NAME}/deployment.yaml"
-                    sh "sed -i 's+image: ${IMAGE_NAME}.*+image: ${IMAGE_NAME}:${DOCKERTAG}+g' services/${SVC_NAME}/deployment.yaml"
-                    sh "cat services/${SVC_NAME}/deployment.yaml"
+                    sh "cat services/${SVC_NAME}/${ENV}/deployment.yaml"
+                    sh "sed -i 's+image: ${IMAGE_NAME}--${ENV}.*+image: ${IMAGE_NAME}--${ENV}:${DOCKERTAG}+g' services/${SVC_NAME}/${ENV}/deployment.yaml"
+                    sh "cat services/${SVC_NAME}/${ENV}/deployment.yaml"
                     sh "git add ."
                     sh "git commit -m 'Done by Jenkins Job change manifest: ${env.BUILD_NUMBER}'"
                     sh('git push https://$GIT_TOKEN@github.com/$GIT_USERNAME/argocd-project.git HEAD:master')
