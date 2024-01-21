@@ -9,8 +9,8 @@ node {
         script {
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 withCredentials([usernamePassword(credentialsId: 'GITHUB_TOKEN', passwordVariable: 'GIT_TOKEN', usernameVariable: 'GIT_USERNAME')]) {
-                    sh "git config user.email aji.indrajaya@efishery.com"
-                    sh "git config user.name 'Aji Indra Jaya'"
+                    sh "git config user.email ${AUTHOR_EMAIL}"
+                    sh "git config user.name ${AUTHOR_NAME}"
                     sh "cat services/${SVC_NAME}/${ENV}/deployment.yaml"
                     sh "sed -i 's+image: ${IMAGE_NAME}--${ENV}.*+image: ${IMAGE_NAME}--${ENV}:${DOCKER_TAG}+g' services/${SVC_NAME}/${ENV}/deployment.yaml"
                     sh "cat services/${SVC_NAME}/${ENV}/deployment.yaml"
