@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: echo-ci-cd--staging
-        image: efishery.azurecr.io/echo-ci-cd--staging:5
+        image: efishery.azurecr.io/echo-ci-cd--staging:6
         env:
           - name: DB_HOST
             valueFrom:
