@@ -12,7 +12,7 @@ node {
                     sh "git config user.email aji.indrajaya@efishery.com"
                     sh "git config user.name 'Aji Indra Jaya'"
                     sh "cat services/${SVC_NAME}/${ENV}/deployment.yaml"
-                    sh "sed -i 's+image: ${IMAGE_NAME}--${ENV}.*+image: ${IMAGE_NAME}--${ENV}:${DOCKERTAG}+g' services/${SVC_NAME}/${ENV}/deployment.yaml"
+                    sh "sed -i 's+image: ${IMAGE_NAME}--${ENV}.*+image: ${IMAGE_NAME}--${ENV}:${DOCKER_TAG}+g' services/${SVC_NAME}/${ENV}/deployment.yaml"
                     sh "cat services/${SVC_NAME}/${ENV}/deployment.yaml"
                     sh "git add ."
                     sh "git commit -m 'Done by Jenkins Job change manifest: ${env.BUILD_NUMBER}'"
