@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: echo-ci-cd--uat
-        image: efishery.azurecr.io/echo-ci-cd--uat:8
+        image: efishery.azurecr.io/echo-ci-cd--uat:9
         env:
           - name: DB_HOST
             valueFrom:
