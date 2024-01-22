@@ -15,7 +15,7 @@ spec:
   - matches:
     - path:
         type: PathPrefix
-        value: /staging
+        value: /staging/
     backendRefs:
     - kind: Service
       name: echo-ci-cd--staging
