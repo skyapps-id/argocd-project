@@ -19,5 +19,6 @@ spec:
     backendRefs:
     - kind: Service
       name: echo-ci-cd--staging
+      namespace: staging
       port: 8080
       
