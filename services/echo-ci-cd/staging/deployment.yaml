@@ -32,7 +32,7 @@ spec:
       - name: echo-ci-cd--staging
         image: efishery.azurecr.io/echo-ci-cd--staging:19
         command: ['/bin/sh']
-        args: ['-c', 'cat /vault/secrets/.env > /app/.env && set -o allexport && source .env && set +o allexport && ./echo-ci-cd']
+        args: ['-c', 'set -o allexport && source /vault/secrets/.env && set +o allexport && ./echo-ci-cd']
         env:
           - name: VAULT_ADDR
             value: 'http://vault.vault:8200'
