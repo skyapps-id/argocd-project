@@ -30,7 +30,7 @@ spec:
       serviceAccountName: echo-ci-cd--staging
       containers:
       - name: echo-ci-cd--staging
-        image: efishery.azurecr.io/echo-ci-cd--staging:19
+        image: efishery.azurecr.io/echo-ci-cd--staging:20
         command: ['/bin/sh']
         args: ['-c', 'set -o allexport && source /vault/secrets/.env && set +o allexport && ./echo-ci-cd']
         env:
