@@ -31,8 +31,8 @@ spec:
       containers:
       - name: echo-ci-cd--staging
         image: efishery.azurecr.io/echo-ci-cd--staging:19
-        command: ['/bin/bash']
-        args: ['-c', 'cat /vault/secrets/.env > /app/.env && source ./.env && ./echo-ci-cd']
+        command: ['/bin/sh']
+        args: ['-c', 'cat /vault/secrets/.env > /app/.env && source /app/.env && ./echo-ci-cd']
         env:
           - name: VAULT_ADDR
             value: 'http://vault.vault:8200'
