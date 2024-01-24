@@ -34,32 +34,7 @@ spec:
         command: ['/bin/sh']
         args: ['-c', 'set -o allexport && source /vault/secrets/.env && set +o allexport && ./echo-ci-cd']
         env:
-          - name: VAULT_ADDR
-            value: 'http://vault.vault:8200'
-          - name: DB_HOST
-            valueFrom:
-              configMapKeyRef:
-                name: echo-configmap
-                key: db_host
-          - name: DB_PORT
-            valueFrom:
-              configMapKeyRef:
-                name: echo-configmap
-                key: db_port
-          - name: DB_NAME
-            valueFrom:
-              configMapKeyRef:
-                name: echo-configmap
-                key: db_name
-          - name: DB_USER
-            valueFrom:
-              secretKeyRef:
-                name: echo-secret
-                key: db_user
-          - name: DB_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: echo-secret
-                key: db_password
+        - name: VAULT_ADDR
+          value: 'http://vault.vault:8200'
         ports:
         - containerPort: 8080
