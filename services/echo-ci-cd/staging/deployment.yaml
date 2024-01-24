@@ -30,7 +30,7 @@ spec:
       serviceAccountName: echo-ci-cd--staging
       containers:
       - name: echo-ci-cd--staging
-        image: efishery.azurecr.io/echo-ci-cd--staging:14
+        image: efishery.azurecr.io/echo-ci-cd--staging:15
         env:
           - name: VAULT_ADDR
             value: 'http://vault.vault:8200'
