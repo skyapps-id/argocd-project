@@ -23,7 +23,7 @@ spec:
           {{ $k }}: {{ $v }}
           {{ end }}
           {{- end -}}
-        vault.hashicorp.com/secret-volume-path-echo-ci-cd--staging: '/app/.env'
+        # vault.hashicorp.com/secret-volume-path-echo-ci-cd--staging: '/app/.env'
         vault.hashicorp.com/agent-inject-file-echo-ci-cd--staging: '.env'
         vault.hashicorp.com/role: 'echo-ci-cd--staging'
     spec:
@@ -31,6 +31,8 @@ spec:
       containers:
       - name: echo-ci-cd--staging
         image: efishery.azurecr.io/echo-ci-cd--staging:19
+        command: ['/bin/sh']
+        args: ['-c', 'cat /vault/secrets/.env > /app/.env && tail -f /dev/null']
         env:
           - name: VAULT_ADDR
             value: 'http://vault.vault:8200'
