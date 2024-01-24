@@ -16,15 +16,15 @@ spec:
         vault.hashicorp.com/agent-init-first: "true"
         vault.hashicorp.com/agent-inject: 'true'
         vault.hashicorp.com/agent-pre-populate-only: 'true'
-        vault.hashicorp.com/agent-inject-secret-webapp: 'secret/data/echo-ci-cd/staging'
-        vault.hashicorp.com/agent-inject-template-webapp: |
+        vault.hashicorp.com/agent-inject-secret-echo-ci-cd--staging: 'secret/data/echo-ci-cd/staging'
+        vault.hashicorp.com/agent-inject-template-echo-ci-cd--staging: |
           {{- with secret "secret/data/echo-ci-cd/staging" -}}
           {{- range $k, $v := .Data.data -}}
           {{ $k }}: {{ $v }}
           {{ end }}
           {{- end -}}
-        vault.hashicorp.com/secret-volume-path-webapp: '/app/.env'
-        vault.hashicorp.com/agent-inject-file-webapp: '.env'
+        vault.hashicorp.com/secret-volume-path-echo-ci-cd--staging: '/app/.env'
+        vault.hashicorp.com/agent-inject-file-echo-ci-cd--staging: '.env'
         vault.hashicorp.com/role: 'echo-ci-cd--staging'
     spec:
       serviceAccountName: echo-ci-cd--staging
