@@ -31,6 +31,8 @@ spec:
       - name: echo-ci-cd--staging
         image: efishery.azurecr.io/echo-ci-cd--staging:14
         env:
+          - name: VAULT_ADDR
+            value: 'http://vault.vault:8200'
           - name: DB_HOST
             valueFrom:
               configMapKeyRef:
