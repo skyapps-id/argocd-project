@@ -36,8 +36,6 @@ spec:
         env:
           - name: VAULT_ADDR
             value: 'http://vault.vault:8200'
-          - name: JWT_PATH
-            value: '/var/run/secrets/kubernetes.io/serviceaccount/token'
           - name: DB_HOST
             valueFrom:
               configMapKeyRef:
