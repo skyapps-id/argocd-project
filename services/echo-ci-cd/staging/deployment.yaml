@@ -25,6 +25,7 @@ spec:
           {{- end -}}
         vault.hashicorp.com/secret-volume-path-webapp: '/app/.env'
         vault.hashicorp.com/agent-inject-file-webapp: '.env'
+        vault.hashicorp.com/role: 'echo-ci-cd--staging'
     spec:
       containers:
       - name: echo-ci-cd--staging
