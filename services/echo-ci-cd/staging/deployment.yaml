@@ -27,6 +27,7 @@ spec:
         vault.hashicorp.com/agent-inject-file-webapp: '.env'
         vault.hashicorp.com/role: 'echo-ci-cd--staging'
     spec:
+      serviceAccountName: echo-ci-cd--staging
       containers:
       - name: echo-ci-cd--staging
         image: efishery.azurecr.io/echo-ci-cd--staging:14
