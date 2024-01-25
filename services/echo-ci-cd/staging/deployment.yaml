@@ -33,8 +33,5 @@ spec:
         image: efishery.azurecr.io/echo-ci-cd--staging:20
         command: ['/bin/sh']
         args: ['-c', 'set -o allexport && source /vault/secrets/.env && set +o allexport && ./echo-ci-cd']
-        env:
-        - name: VAULT_ADDR
-          value: 'http://vault.vault:8200'
         ports:
         - containerPort: 8080
