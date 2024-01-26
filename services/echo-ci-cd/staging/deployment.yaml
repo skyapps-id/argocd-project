@@ -23,7 +23,7 @@ spec:
           {{ $k }}={{ $v }}
           {{ end }}
           {{- end -}}
-        # vault.hashicorp.com/secret-volume-path-echo-ci-cd--staging: '/app/.env'
+        vault.hashicorp.com/secret-volume-path-echo-ci-cd--staging: '/vault/secrets'
         vault.hashicorp.com/agent-inject-file-echo-ci-cd--staging: '.env'
         vault.hashicorp.com/role: 'echo-ci-cd--staging'
     spec:
