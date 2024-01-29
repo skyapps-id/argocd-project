@@ -1,0 +1,29 @@
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceDefaults
+metadata:
+  name: azure-sandbox-service--staging
+  namespace: staging
+spec:
+  protocol: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: azure-sandbox-service--staging
+  name: azure-sandbox-service--staging
+  namespace: staging
+spec:
+  selector:
+    app: azure-sandbox-service--staging
+  ports:
+    - port: 9000
+      targetPort: 9000
+      protocol: TCP
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: azure-sandbox-service--staging
+  namespace: staging
+automountServiceAccountToken: true

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: azure-sandbox-service--staging
+spec:
+  selector:
+    matchLabels:
+      app: azure-sandbox-service--staging
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: azure-sandbox-service--staging
+      annotations:
+        consul.hashicorp.com/connect-inject: 'true'
+        vault.hashicorp.com/agent-init-first: "true"
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/agent-pre-populate-only: 'true'
+        vault.hashicorp.com/agent-inject-secret-azure-sandbox-service--staging: 'secret/data/azure-sandbox-service/staging'
+        vault.hashicorp.com/agent-inject-template-azure-sandbox-service--staging: |
+          {{- with secret "secret/data/azure-sandbox-service/staging" -}}
+            {{ .Data.data | toUnescapedJSON }}
+          {{- end -}}
+        vault.hashicorp.com/secret-volume-path-azure-sandbox-service--staging: '/app/resources'
+        vault.hashicorp.com/agent-inject-file-azure-sandbox-service--staging: 'config.json'
+        vault.hashicorp.com/role: 'azure-sandbox-service--staging'
+    spec:
+      serviceAccountName: azure-sandbox-service--staging
+      containers:
+      - name: azure-sandbox-service--staging
+        image: efishery.azurecr.io/azure-sandbox-service--staging:7
+        ports:
+        - containerPort: 9000
