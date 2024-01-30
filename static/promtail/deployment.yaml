@@ -20,6 +20,11 @@ spec:
         args:
           - -config.file=/etc/promtail/promtail-config.yaml
           - -client.url=http://loki--preproduction.service.consul:3100/loki/api/v1/push
+        env: 
+        - name: 'HOSTNAME'
+          valueFrom:
+            fieldRef:
+              fieldPath: 'spec.nodeName'
         volumeMounts:
         - name: promtail-config
           mountPath: /etc/promtail/
