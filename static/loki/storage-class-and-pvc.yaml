@@ -21,18 +21,3 @@ spec:
   resources:
     requests:
       storage: 10Gi
-
----
-
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: loki-pv
-  namespace: logging
-spec:
-  capacity:
-    storage: 1Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: /wal
