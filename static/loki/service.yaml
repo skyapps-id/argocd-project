@@ -1,0 +1,30 @@
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceDefaults
+metadata:
+  name: loki--preproduction
+  namespace: logging
+spec:
+  protocol: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: loki--preproduction
+  labels:
+    app: loki
+  namespace: logging
+spec:
+  selector:
+    app: loki
+  ports:
+    - protocol: TCP
+      port: 3100
+      targetPort: 3100
+  type: ClusterIP
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: loki--preproduction
+  namespace: logging
+automountServiceAccountToken: true
