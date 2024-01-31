@@ -14,7 +14,7 @@ metadata:
 spec:
   ports:
     - name: amqp-rabbitmq
-      port: 6379
+      port: 5672
       protocol: TCP
       targetPort: amqp-rabbitmq
     - name: gui-rabbitmq
