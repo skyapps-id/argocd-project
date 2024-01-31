@@ -17,7 +17,7 @@ spec:
       protocol: TCP
       targetPort: tcp-redis
   selector:
-    app: redis
+    app: redis--staging
   sessionAffinity: None
   type: ClusterIP
 ---
