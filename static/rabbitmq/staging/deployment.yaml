@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq--staging
+  namespace: staging
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabbitmq--staging
+  template:
+    metadata:
+      labels:
+        app: rabbitmq--staging
+      annotations:
+        consul.hashicorp.com/connect-inject: 'true'
+    spec:
+      containers:
+      - name: rabbitmq--staging
+        image: rabbitmq:3-management-alpine
+        ports:
+          - containerPort: 5672
+            name: amqp-rabbitmq
+            protocol: TCP
+          - containerPort: 15672
+            name: gui-rabbitmq
+            protocol: TCP
+        env:
+          - name: ALLOW_EMPTY_PASSWORD
+            value: "yes"
+        volumeMounts:
+          - name: rabbitmq-volume
+            mountPath: /var/lib/rabbitmq
+      volumes:
+        - name: rabbitmq-volume
+          persistentVolumeClaim:
+            claimName: rabbitmq-pvc
