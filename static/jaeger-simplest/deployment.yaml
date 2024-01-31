@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jaeger-simplest--staging
+  namespace: staging
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jaeger-simplest--staging
+  template:
+    metadata:
+      labels:
+        app: jaeger-simplest--staging
+      annotations:
+        consul.hashicorp.com/connect-inject: 'true'
+    spec:
+      containers:
+      - name: jaeger-simplest--staging
+        image: jaegertracing/all-in-one:1.53
+        ports:
+          - containerPort: 4317
+            name: grpc-jaeger
+            protocol: TCP
+          - containerPort: 4318
+            name: http-jaeger
+            protocol: TCP
+          - containerPort: 16686
+            name: ui-jaeger
+            protocol: TCP
+        env:
+          - name: COLLECTOR_OTLP_ENABLED
+            value: "true"
+          - name: COLLECTOR_ZIPKIN_HOST_PORT
+            value: "9411"

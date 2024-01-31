@@ -1,0 +1,38 @@
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceDefaults
+metadata:
+  name: jaeger-simplest--staging
+  namespace: staging
+spec:
+  protocol: tcp
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jaeger-simplest--staging
+  namespace: staging
+spec:
+  ports:
+    - name: grpc-jaeger
+      port: 4317
+      protocol: TCP
+      targetPort: grpc-jaeger
+    - name: http-jaeger
+      port: 4318
+      protocol: TCP
+      targetPort: http-jaeger
+    - name: ui-jaeger
+      port: 16686
+      protocol: TCP
+      targetPort: ui-jaeger
+  selector:
+    app: jaeger-simplest--staging
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: jaeger-simplest--staging
+  namespace: staging
+automountServiceAccountToken: true
