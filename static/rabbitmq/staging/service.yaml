@@ -13,10 +13,12 @@ metadata:
   namespace: staging
 spec:
   ports:
-    - port: 6379
+    - name: amqp-rabbitmq
+      port: 6379
       protocol: TCP
       targetPort: amqp-rabbitmq
-    - port: 15672
+    - name: gui-rabbitmq
+      port: 15672
       protocol: TCP
       targetPort: gui-rabbitmq
   selector:
