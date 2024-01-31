@@ -1,0 +1,23 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: azure-disk-emqx
+provisioner: kubernetes.io/azure-disk
+parameters:
+  storageaccounttype: Standard_LRS
+reclaimPolicy: Retain
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: emqx-pvc
+  namespace: staging
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: azure-disk-emqx
+  resources:
+    requests:
+      storage: 1Gi

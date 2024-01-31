@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emqx--staging
+  namespace: staging
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: emqx--staging
+  template:
+    metadata:
+      labels:
+        app: emqx--staging
+      annotations:
+        consul.hashicorp.com/connect-inject: 'true'
+    spec:
+      containers:
+      - name: emqx--staging
+        image: emqx:5.0.13
+        ports:
+          - containerPort: 1883
+            name: mqtt-emqx
+            protocol: TCP
+          - containerPort: 18083
+            name: gui-emqx
+            protocol: TCP
+        env:
+          - name: EMQX_NAME
+            value: "emqx"
+          - name: EMQX_HOST
+            value: "emqx--staging.service.consul"
+          - name: EMQX_LOADED_PLUGINS
+            value: "emqx_recon,emqx_retainer,emqx_management,emqx_dashboard"
+        volumeMounts:
+          - name: emqx-volume
+            mountPath: /var/lib/emqx
+      volumes:
+        - name: emqx-volume
+          persistentVolumeClaim:
+            claimName: emqx-pvc
