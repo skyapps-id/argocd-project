@@ -1,0 +1,34 @@
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceDefaults
+metadata:
+  name: plankton--staging
+  namespace: staging
+spec:
+  protocol: tcp
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: plankton--staging
+  name: plankton--staging
+  namespace: staging
+spec:
+  selector:
+    app: plankton--staging
+  ports:
+    - name: http-plankton
+      port: 9000
+      protocol: TCP
+      targetPort: http-plankton
+    - name: grpc-plankton
+      port: 9002
+      protocol: TCP
+      targetPort: grpc-plankton
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: plankton--staging
+  namespace: staging
+automountServiceAccountToken: true
