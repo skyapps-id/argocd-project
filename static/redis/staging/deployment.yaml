@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis--staging
+  namespace: staging
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis--staging
+  template:
+    metadata:
+      labels:
+        app: redis--staging
+      annotations:
+        consul.hashicorp.com/connect-inject: 'true'
+    spec:
+      containers:
+      - name: redis--staging
+        image: redis:latest
+        ports:
+          - containerPort: 6379
+            name: tcp-redis
+            protocol: TCP
+        # resources:
+        #   requests:
+        #     cpu: "0.5"
+        #     memory: 1Gi
+        #   limits:
+        #     cpu: "1"
+        #     memory: 2Gi
+        env:
+          - name: ALLOW_EMPTY_PASSWORD
+            value: "yes"
+        volumeMounts:
+          - name: redis-volume
+            mountPath: /usr/local/etc/redis/
+      volumes:
+        - name: redis-volume
+          persistentVolumeClaim:
+            claimName: redis-pvc
