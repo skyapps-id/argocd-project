@@ -1,7 +1,7 @@
 apiVersion: consul.hashicorp.com/v1alpha1
 kind: ServiceDefaults
 metadata:
-  name: rabbitmq--staging
+  name: redis--staging
   namespace: staging
 spec:
   protocol: tcp
@@ -9,21 +9,21 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: rabbitmq--staging
+  name: redis--staging
   namespace: staging
 spec:
   ports:
     - port: 6379
       protocol: TCP
-      targetPort: tcp-rabbitmq
+      targetPort: tcp-redis
   selector:
-    app: rabbitmq--staging
+    app: redis--staging
   sessionAffinity: None
   type: ClusterIP
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: rabbitmq--staging
+  name: redis--staging
   namespace: staging
 automountServiceAccountToken: true
