@@ -1,0 +1,11 @@
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceIntentions
+metadata:
+  name: api-gateway-patrick-star--staging
+  namespace: staging
+spec:
+  destination:
+    name: patrick-star--staging
+  sources:
+    - name: api-gateway
+      action: allow
