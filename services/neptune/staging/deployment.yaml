@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: neptune--staging
+  namespace: staging
+spec:
+  selector:
+    matchLabels:
+      app: neptune--staging
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: neptune--staging
+      annotations:
+        consul.hashicorp.com/connect-inject: 'true'
+        vault.hashicorp.com/agent-init-first: "true"
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/agent-pre-populate-only: 'true'
+        vault.hashicorp.com/agent-inject-secret-neptune--staging: 'secret/data/neptune/staging'
+        vault.hashicorp.com/agent-inject-template-neptune--staging: |
+          {{- with secret "secret/data/neptune/staging" -}}
+            {{ .Data.data | toUnescapedJSON }}
+          {{- end -}}
+        vault.hashicorp.com/secret-volume-path-neptune--staging: '/app/resources'
+        vault.hashicorp.com/agent-inject-file-neptune--staging: 'config.json'
+        vault.hashicorp.com/role: 'neptune--staging'
+    spec:
+      serviceAccountName: neptune--staging
+      containers:
+      - name: neptune--staging
+        image: efishery.azurecr.io/neptune--staging:4
+        ports:
+        - containerPort: 9000
+          name: http-neptune
+          protocol: TCP
+        - containerPort: 9002
+          name: grpc-neptune
+          protocol: TCP
