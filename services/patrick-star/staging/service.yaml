@@ -19,8 +19,8 @@ spec:
   ports:
     - name: http-patrick
       port: 9000
+      targetPort: 9000
       protocol: TCP
-      targetPort: http-patrick
 ---
 apiVersion: v1
 kind: ServiceAccount
