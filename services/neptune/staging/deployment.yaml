@@ -29,7 +29,7 @@ spec:
       serviceAccountName: neptune--staging
       containers:
       - name: neptune--staging
-        image: efishery.azurecr.io/neptune--staging:4
+        image: efishery.azurecr.io/neptune--staging:1
         ports:
         - containerPort: 9000
           name: http-neptune
