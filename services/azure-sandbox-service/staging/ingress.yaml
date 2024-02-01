@@ -1,24 +1,24 @@
-apiVersion: gateway.networking.k8s.io/v1beta1
-kind: HTTPRoute
-metadata:
-  name: route-azure-sandbox-service--staging
-  labels:
-    app: azure-sandbox-service--staging
-  namespace: staging
-spec:
-  parentRefs:
-  - name: api-gateway
-    namespace: consul
-  hostnames:
-  - efishery.southeastasia.cloudapp.azure.com
-  rules:
-  - matches:
-    - path:
-        type: PathPrefix
-        value: /azure-sandbox-service/staging/
-    backendRefs:
-    - kind: Service
-      name: azure-sandbox-service--staging
-      namespace: staging
-      port: 9000
+# apiVersion: gateway.networking.k8s.io/v1beta1
+# kind: HTTPRoute
+# metadata:
+#   name: route-azure-sandbox-service--staging
+#   labels:
+#     app: azure-sandbox-service--staging
+#   namespace: staging
+# spec:
+#   parentRefs:
+#   - name: api-gateway
+#     namespace: consul
+#   hostnames:
+#   - efishery.southeastasia.cloudapp.azure.com
+#   rules:
+#   - matches:
+#     - path:
+#         type: PathPrefix
+#         value: /azure-sandbox-service/staging/
+#     backendRefs:
+#     - kind: Service
+#       name: azure-sandbox-service--staging
+#       namespace: staging
+#       port: 9000
       
