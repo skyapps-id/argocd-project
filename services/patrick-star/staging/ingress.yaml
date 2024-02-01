@@ -1,14 +1,3 @@
-apiVersion: consul.hashicorp.com/v1alpha1
-kind: ServiceIntentions
-metadata:
-  name: api-gateway-patrick-star--staging
-spec:
-  destination:
-    name: patrick-star--staging
-  sources:
-    - name: api-gateway
-      action: allow
----
 apiVersion: gateway.networking.k8s.io/v1beta1
 kind: HTTPRoute
 metadata:
