@@ -17,10 +17,10 @@ spec:
   selector:
     app: patrick-star--staging
   ports:
-    - name: http-patrick-star
+    - name: http-patrick
       port: 9000
       protocol: TCP
-      targetPort: http-patrick-star
+      targetPort: http-patrick
 ---
 apiVersion: v1
 kind: ServiceAccount

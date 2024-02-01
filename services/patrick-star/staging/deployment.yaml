@@ -31,5 +31,5 @@ spec:
         image: efishery.azurecr.io/patrick-star--staging:2
         ports:
         - containerPort: 9000
-          name: http-patrick-star
+          name: http-patrick
           protocol: TCP
