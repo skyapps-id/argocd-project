@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: patrick-star--staging
+spec:
+  selector:
+    matchLabels:
+      app: patrick-star--staging
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: patrick-star--staging
+      annotations:
+        consul.hashicorp.com/connect-inject: 'true'
+        vault.hashicorp.com/agent-init-first: "true"
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/agent-pre-populate-only: 'true'
+        vault.hashicorp.com/agent-inject-secret-patrick-star--staging: 'secret/data/patrick-star/staging'
+        vault.hashicorp.com/agent-inject-template-patrick-star--staging: |
+          {{- with secret "secret/data/patrick-star/staging" -}}
+            {{ .Data.data | toUnescapedJSON }}
+          {{- end -}}
+        vault.hashicorp.com/secret-volume-path-patrick-star--staging: '/app/resources'
+        vault.hashicorp.com/agent-inject-file-patrick-star--staging: 'config.json'
+        vault.hashicorp.com/role: 'patrick-star--staging'
+    spec:
+      serviceAccountName: patrick-star--staging
+      containers:
+      - name: patrick-star--staging
+        image: efishery.azurecr.io/patrick-star--staging:2
+        ports:
+        - containerPort: 9000
+          name: http-patrick-star
+          protocol: TCP

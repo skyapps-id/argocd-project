@@ -1,0 +1,30 @@
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceDefaults
+metadata:
+  name: patrick-star--staging
+  namespace: staging
+spec:
+  protocol: tcp
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: patrick-star--staging
+  name: patrick-star--staging
+  namespace: staging
+spec:
+  selector:
+    app: patrick-star--staging
+  ports:
+    - name: http-patrick-star
+      port: 9000
+      protocol: TCP
+      targetPort: http-patrick-star
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: patrick-star--staging
+  namespace: staging
+automountServiceAccountToken: true

@@ -30,10 +30,9 @@ spec:
       - name: plankton--staging
         image: efishery.azurecr.io/plankton--staging:2
         ports:
-        - containerPort: 4317
+        - containerPort: 9000
           name: http-plankton
           protocol: TCP
-        - containerPort: 9000
+        - containerPort: 9002
           name: grpc-plankton
           protocol: TCP
-        - containerPort: 9002
