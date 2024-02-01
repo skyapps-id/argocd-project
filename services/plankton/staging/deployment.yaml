@@ -28,7 +28,7 @@ spec:
       serviceAccountName: plankton--staging
       containers:
       - name: plankton--staging
-        image: efishery.azurecr.io/plankton--staging:2
+        image: efishery.azurecr.io/plankton--staging:4
         ports:
         - containerPort: 9000
           name: http-plankton
