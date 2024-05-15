@@ -34,7 +34,7 @@ spec:
             value: "emqx_recon,emqx_retainer,emqx_management,emqx_dashboard"
         volumeMounts:
           - name: emqx-volume
-            mountPath: /var/lib/emqx
+            mountPath: /opt/emqx/data
       volumes:
         - name: emqx-volume
           persistentVolumeClaim:
