@@ -15,9 +15,11 @@ spec:
       annotations:
         consul.hashicorp.com/connect-inject: 'true'
     spec:
+      securityContext:
+        fsGroup: 1000
       containers:
       - name: emqx--staging
-        image: emqx:5.0.13
+        image: emqx/emqx:latest
         ports:
           - containerPort: 1883
             name: mqtt-emqx
@@ -33,9 +35,9 @@ spec:
           - name: EMQX_LOADED_PLUGINS
             value: "emqx_recon,emqx_retainer,emqx_management,emqx_dashboard"
         volumeMounts:
-          - name: emqx-volume
+          - name: emqx-storage
             mountPath: /opt/emqx/data
       volumes:
-        - name: emqx-volume
+        - name: emqx-storage
           persistentVolumeClaim:
-            claimName: emqx-pvc
+            claimName: emqx-storage-pvc
