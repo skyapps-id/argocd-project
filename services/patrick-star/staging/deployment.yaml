@@ -29,7 +29,7 @@ spec:
       serviceAccountName: patrick-star--staging
       containers:
       - name: patrick-star--staging
-        image: efishery.azurecr.io/patrick-star--staging:3
+        image: efishery.azurecr.io/patrick-star--staging:4
         ports:
         - containerPort: 9000
           name: http-patrick
